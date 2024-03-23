@@ -13,8 +13,8 @@ logFile="website_status.log"
 
 # Перебираємо сайти у масиві
 for site in "${sites[@]}"; do
-  # Використовуємо curl для отримання HTTP статус коду
-  statusCode=$(curl -s -o /dev/null -w "%{http_code}" $site)
+  # Використовуємо curl з флагом -L для отримання HTTP статус коду, слідуючи за перенаправленнями
+  statusCode=$(curl -L -s -o /dev/null -w "%{http_code}" $site)
   
   # Перевіряємо, чи код відповіді є 200
   if [ $statusCode -eq 200 ]; then
